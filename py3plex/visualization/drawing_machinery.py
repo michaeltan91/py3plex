@@ -1,5 +1,5 @@
 import networkx as nx
-from networkx.utils import is_string_like
+#from networkx.utils import is_string_like
 from networkx.drawing.layout import shell_layout, \
     circular_layout, kamada_kawai_layout, spectral_layout, \
     spring_layout, random_layout
@@ -10,6 +10,10 @@ __all__ = [
     'draw_kamada_kawai', 'draw_random', 'draw_spectral', 'draw_spring',
     'draw_shell'
 ]
+
+
+def is_string_like(obj):
+    return isinstance(obj, str)
 
 
 def draw(G, pos=None, ax=None, **kwds):
