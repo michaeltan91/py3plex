@@ -8,5 +8,5 @@ tqdm>0.0
 matplotlib==3.6.0rc1
 gensim
 scikit-learn
-bitarray==1.2.1
+bitarray>=2.7.4
 seaborn
