@@ -195,13 +195,13 @@ class multi_layer_network:
         Conver the matrix to scipy-sparse version. This is useful for classification.
         """
         if return_only:
-            return nx.to_scipy_sparse_matrix(self.core_network)
+            return nx.to_scipy_sparse_array(self.core_network)
 
         if replace_core:
-            self.core_network = nx.to_scipy_sparse_matrix(self.core_network)
+            self.core_network = nx.to_scipy_sparse_array(self.core_network)
             self.core_sparse = None
         else:
-            self.core_sparse = nx.to_scipy_sparse_matrix(self.core_network)
+            self.core_sparse = nx.to_scipy_sparse_array(self.core_network)
 
     def load_temporal_edge_information(self,
                                        input_file=None,
@@ -298,7 +298,7 @@ class multi_layer_network:
         if directed is None:
             directed = self.directed
 
-        self.core_network = nx.from_scipy_sparse_matrix(
+        self.core_network = nx.from_scipy_sparse_array(
             self.core_network, directed)
         self.add_dummy_layers()
         self.sparse_enabled = False
@@ -859,7 +859,7 @@ class multi_layer_network:
                 simple_graph.add_edge(nmap[node_first],
                                       nmap[node_second],
                                       weight=weight)
-            vectors = nx.to_scipy_sparse_matrix(simple_graph)
+            vectors = nx.to_scipy_sparse_array(simple_graph)
             self.numeric_core_network = vectors
             self.node_order_in_matrix = simple_graph.nodes()
 
@@ -1116,7 +1116,7 @@ class multi_layer_network:
             induced_net = self.core_network.subgraph(subset_nodes)
             for e in induced_net.edges(data=True):
                 e[2]['weight'] = float(e[2]['weight'])
-            induced_net = nx.to_scipy_sparse_matrix(induced_net)
+            induced_net = nx.to_scipy_sparse_array(induced_net)
 
         for x in heuristic:
             try:
